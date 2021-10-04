@@ -1,0 +1,503 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit&display=swap" rel="stylesheet">
+
+<p-menubar [model]="items"   [style]="{'height':'50px'}">
+
+  <button pButton pRipple type="button" (click)="DISPLAY_ACCOUNT()" style="border: 0px;color: rgb(100, 100, 100);" icon="pi pi-user" label="{{this.username}}" class="p-button-outlined p-button-secondary"></button>
+</p-menubar>
+
+<p-dialog header="Marker"  [modal]="true" [dismissableMask]="true"  [(visible)]="_DISPLAY" [style]="{width: '50vw'}" >
+  <ng-container [ngSwitch]="_MARKER_LIST">
+
+      <table id="customers">
+        <tr>
+          <th>ID</th>
+          <th>Lat</th>
+          <th>Lng</th>
+          <th>Type</th>
+          <th>By</th>
+          <th>Status</th>
+        </tr>
+            <ng-container *ngSwitchCase="0">
+                <tr class="fake-link" (click)='HTTP_SELETE_BY_ID_SELETE(item.id,item.by,true)' *ngFor="let item of _TEMP_TEST_P">
+                  <td>{{item.id}}</td>
+                  <td>{{item.lat}}</td>
+                  <td>{{item.lng}}</td>
+                  <td>{{item.mode}}</td>
+                  <td>{{item.user_id}}</td>
+                  <td>{{item.by}}</td>
+                </tr>
+            </ng-container>
+            <ng-container *ngSwitchCase="1">
+              <tr class="fake-link" (click)='HTTP_SELETE_BY_ID_SELETE(item.id,item.by,true)' *ngFor="let item of _TEMP_TEST_C">
+                <td>{{item.id}}</td>
+                <td>{{item.lat}}</td>
+                <td>{{item.lng}}</td>
+                <td>{{item.mode}}</td>
+                <td>{{item.user_id}}</td>
+                <td>{{item.by}}</td>
+              </tr>
+          </ng-container>
+          <ng-container *ngSwitchCase="2">
+            <tr class="fake-link" (click)='HTTP_SELETE_BY_ID_SELETE(item.id,item.by,true)' *ngFor="let item of _TEMP_TEST_R">
+              <td>{{item.id}}</td>
+              <td>{{item.lat}}</td>
+              <td>{{item.lng}}</td>
+              <td>{{item.mode}}</td>
+              <td>{{item.user_id}}</td>
+              <td>{{item.by}}</td>
+            </tr>
+        </ng-container>
+        <ng-container *ngSwitchCase="3">
+          <tr class="fake-link" (click)='HTTP_SELETE_BY_ID_SELETE(item.id,item.by,true)' *ngFor="let item of _TEMP_TEST_N">
+            <td>{{item.id}}</td>
+            <td>{{item.lat}}</td>
+            <td>{{item.lng}}</td>
+            <td>{{item.mode}}</td>
+            <td>{{item.user_id}}</td>
+            <td>{{item.by}}</td>
+          </tr>
+      </ng-container>
+
+      </table>
+              
+      
+  </ng-container>
+
+  
+
+
+
+</p-dialog>
+
+<p-dialog header="Open"  [modal]="true" [dismissableMask]="true"  [(visible)]="_DISPLAY_UPLOAD" [style]="{width: '50vw'}" [baseZIndex]="1000000">
+
+  <h4 >เปิดไฟล์ Text File (.txt) ที่สร้างจากโปรแกรม Road Detector เท่านั้น</h4>
+
+  <div  style="text-align: center;">
+    <p-fileUpload  [style]="{'height':'100px'}" accept="text/*" #fubauto mode="basic" chooseLabel="Browse" [auto]="true" [customUpload]="true" (onSelect)="readFile($event,fubauto)"></p-fileUpload>
+  </div>
+  <br>
+    <div  style="text-align: center;">
+    <button (click)="ROAD_DETECTOR_TEXT()" [disabled]='_READ_FILE' pButton pRipple type="button" style="font-size: 11px;width: 70px;" label="อ่านไฟล์" class="p-button-secondary"></button>
+  </div>
+
+</p-dialog>
+
+<p-dialog header="Road Detector"  [modal]="true" [dismissableMask]="true"  [(visible)]="_DISPLAY_ROAD_DETECTOR" [style]="{width: '50vw'}" [baseZIndex]="1000000">
+
+  <div *ngFor="let item of _TEXT_STRING_TEST; let i = index">
+    <br>
+    <div class="p-grid">
+
+
+      <div class="p-d-flex">
+          
+          <img src="data:image/jpeg;base64,{{item[3]}}" />
+        <div class="p-mr-2">
+
+        </div>
+        <div class="p-mr-2">
+          <h4>ตำแหน่ง: {{item[0]}},{{item[1]}}</h4>
+          <p-dropdown [options]="_RPAD_TYPE" [(ngModel)]="item[2]" (onChange)="_RPAD_TYPE_CHANGE($event,i)" optionLabel="name"></p-dropdown>
+        </div>
+      </div>
+    </div>
+
+    <br>
+    <hr>
+  </div>
+  
+  <ng-template pTemplate="footer">
+    <button (click)="_DISPLAY_ROAD_DETECTOR = false" pButton pRipple type="button" label="ยกเลิก"  class="p-button-secondary"></button>
+    <button (click)="SAVE_ROAD_DETECTOR()" pButton pRipple type="button" label="บันทึก" class="p-button-raised"></button>
+    </ng-template>
+  
+</p-dialog>
+
+<p-dialog header="Options"  [modal]="true" [dismissableMask]="true"  [(visible)]="_DISPLAY_OPTIONS" [style]="{width: '50vw'}" >
+
+  
+   <div class="p-grid" >
+
+            <div class="col-6" style="width: 50%;">
+              <h5>Marker</h5>
+                    <div class="p-field-checkbox">
+                        <p-checkbox name="group1" value="PH" [(ngModel)]="_MARKER_SETTING_VALUE_DISPLAY" ></p-checkbox>
+                        <label for="ny">หลุม</label>
+                    </div>
+                    <div class="p-field-checkbox">
+                        <p-checkbox name="group1" value="CK" [(ngModel)]="_MARKER_SETTING_VALUE_DISPLAY"></p-checkbox>
+                        <label for="sf">ถนนแตก</label>
+                    </div>
+                    <div class="p-field-checkbox">
+                        <p-checkbox name="group1" value="RP" [(ngModel)]="_MARKER_SETTING_VALUE_DISPLAY" ></p-checkbox>
+                        <label for="la">ถนนซ่อมปะ</label>
+                    </div>
+                    <div class="p-field-checkbox">
+                      <p-checkbox name="group1" value="NA" [(ngModel)]="_MARKER_SETTING_VALUE_DISPLAY" ></p-checkbox>
+                      <label for="la">ไม่ทราบ</label>
+                  </div>
+
+            </div>
+
+            <div class="col-6">
+              <h5>User</h5>
+                    <div class="p-field-checkbox">
+                        <p-checkbox name="group1" value="USER"  [disabled]="_MARKER_VALUE_FORME" [(ngModel)]="_MARKER_SETTING_VALUE_MODE"></p-checkbox>
+                        <label for="ny">ผู้ใช้ทั่วไป</label>
+                    </div>
+                    <div class="p-field-checkbox">
+                        <p-checkbox name="group1" value="ADMIN" [disabled]="_MARKER_VALUE_FORME"  [(ngModel)]="_MARKER_SETTING_VALUE_MODE"></p-checkbox>
+                        <label for="sf">เจ้าหน้าที่</label>
+                    </div>
+                    <div class="p-field-checkbox">
+                      <p-checkbox [binary]="true"  [(ngModel)]="_MARKER_VALUE_FORME"></p-checkbox>
+                      <label for="ny">ฉันคนเดียว</label>
+                    </div>
+
+            </div>
+   </div>
+
+    <div class="p-grid">
+        <div class="col-6" style="width: 50%;">
+              <h5>Time</h5>
+              <div class="p-field-checkbox">
+                    <p-checkbox [binary]="true" (click)="MARKER_CHECKBOX_CH()"  [(ngModel)]="_MARKER_ALL_TIME"></p-checkbox>
+                    <label for="ny">ทั้งหมด</label>
+              </div>
+              <p-calendar appendTo="body" [disabled]='_MARKER_CALEN_TIME' [(ngModel)]="_MARKER_TIME" [showIcon]="true" inputId="icon" ></p-calendar>
+        </div>
+        <div class="col-6">
+         
+          <h5>การตรวจสอบ</h5>
+              <div class="p-field-checkbox">
+                <p-checkbox [binary]="true"   [(ngModel)]="_MARKER_PREDICT"></p-checkbox>
+                <label for="ny">ระบบตรวจสอบแล้ว</label>
+              </div>
+
+              <div class="p-field-checkbox">
+                <p-checkbox [binary]="true"  [(ngModel)]="_MARKER_MANAGER"></p-checkbox>
+                <label for="ny">เจ้าหน้าที่ตรวจสอบแล้ว</label>
+              </div>
+        
+
+        </div>
+    </div>
+            
+
+    <ng-template pTemplate="footer">
+      <button  (click)="_DISPLAY_OPTIONS = false" pButton pRipple type="button" label="ยกเลิก" class="p-button-secondary"></button>
+      <button (click)="MARKER_SETTING_SAVE();_DISPLAY_OPTIONS = false" pButton pRipple type="button" label="บันทึก" class="p-button-raised"></button>
+    </ng-template>
+  
+</p-dialog>
+
+<p-dialog header="Deteil"  [modal]="true" [dismissableMask]="true"  [(visible)]="_DISPLAY_DETEIL" [style]="{width: '50vw'}" >
+  <ng-container *ngFor="let item of _MARKER_DETEIL_BY_ID">
+
+    <div class="p-grid">
+
+      <div class="col-6" style="width: 50%;"> 
+
+            <div  style="width: 300px;height: 300px;background-color: rgb(160, 160, 160);overflow: hidden;">
+              <img class="Y2VudGVy" src="http://20.198.233.53:1230/{{item.by}}{{item.user_id_fk}}/{{item.photo}}" alt="">
+            </div>
+
+            <div style="line-height: 0px;"><h5>รายการโดย: </h5></div>
+            <input class="p-inputtext-sm" style="width: 90%;" placeholder="{{item.username}}" [disabled]="true" pInputText> 
+            
+            <div style="line-height: 0px;"><h5>ID: </h5></div>
+            <input class="p-inputtext-sm" style="width: 90%;" placeholder="{{item.road_id}}" [disabled]="true" pInputText> 
+
+            <div style="line-height: 0px;"><h5>วันที่: </h5></div>
+            <input class="p-inputtext-sm" style="width: 90%;" placeholder="{{item.date}}" [disabled]="true" pInputText> 
+
+      </div>
+
+      <div class="col-6" > 
+
+            <div style="line-height: 0px;"><h5>สถานะ: </h5></div>
+            <ng-container *ngIf="item.by != 'photo/admin/'"> <h4>ผู้ใช้ทั่วไป</h4> </ng-container>
+            <ng-container *ngIf="item.by == 'photo/admin/'"> <h4>เจ้าหน้าที่</h4> </ng-container>
+
+            <hr>
+
+            <div style="line-height: 0px;"><h5>ชนิดถนน: </h5></div>
+            <p-dropdown [options]="_RPAD_DETEIL_TYPE" [(ngModel)]="_MARKER_DETEIL_TYPE_CHENGE"  optionLabel="name"></p-dropdown>
+
+            <hr>
+
+            <div style="line-height: 0px;"><h5>ตรวจสอบโดยระบบ: </h5></div>
+            <ng-container *ngIf="item.predict == 0"> <h4>ไม่</h4> </ng-container>
+            <ng-container *ngIf="item.predict == 1"> <h4>ตรวจสอบแล้ว</h4> </ng-container>
+
+            <hr>
+
+            <div style="line-height: 0px;"><h5>ตรวจสอบโดยเจ้าหน้าที่: </h5></div>
+            <ng-container *ngIf="item.state == 0"> <h4>ไม่</h4> </ng-container>
+            <ng-container *ngIf="item.state == 1"> <h4>ตรวจสอบแล้ว</h4> </ng-container>
+
+            <hr>
+
+            <ng-container  *ngIf="item.by != 'photo/admin/'">
+            <div style="line-height: 0px;"><h5>รายละเอียด: </h5></div>
+            <h4  style="width: 300px;word-wrap: break-word;">{{item.detail}}</h4>
+            </ng-container>
+                      
+
+                
+
+      </div>
+        
+      </div>
+
+     
+   
+
+</ng-container>
+
+  <ng-template pTemplate="footer">
+    <button  pButton pRipple type="button" (click)="MARKER_DETEIL_TYPE_SAVE(_MARKER_DETEIL_BY_ID[0].road_id,_MARKER_DETEIL_BY_ID[0].by);_DISPLAY_DETEIL = false" label="บันทึก" class="p-button"></button>
+  </ng-template>
+
+</p-dialog>
+
+<p-dialog header="Register"  [modal]="true" [dismissableMask]="true"  [(visible)]="_DISPLAY_REGISTER" [style]="{width: '30vw'}" >
+ 
+  <div class="p-formgroup-inline">
+    <div class="p-field">
+        <label for="Username" class="p-sr-only">Username</label>
+        <input [(ngModel)]='_REGISTER_USERNAME' id="Username" type="text" pInputText placeholder="Username"> 
+    </div>
+    <div class="p-field">
+        <label for="Password" class="p-sr-only">Password</label>
+        <p-password [(ngModel)]='_REGISTER_PASSWORD' [feedback]="false"  placeholder="Password"></p-password>
+    </div>
+    <button (click)="Register()" pButton type="button" label="Submit"></button>
+</div>
+      
+</p-dialog>
+
+<p-dialog header="Account"  [modal]="true" [dismissableMask]="true"  [(visible)]="_DISPLAY_ACCOUNT" [style]="{width: '30vw'}" >
+ 
+  <div class="p-grid">
+
+    <div class="p-col-12 ">
+      <div  style="text-align: center;">
+        <p-avatar icon="pi pi-user" styleClass="p-mr-2" size="xlarge" shape="circle"></p-avatar>
+      </div>
+      
+    </div>
+
+    <div class="p-col-12 " style="height: 50px;">
+      <div style="text-align: center;margin-top: -30px;">
+        <h1>{{this.username}}</h1>
+      </div>
+    </div>
+
+    </div>
+    <hr>
+    
+
+    <div style="text-align: center;">
+      <button (click)="DISPLAY_REGISTER()" pButton pRipple type="button" style="width: 100%;height: 50px;" label="Register"  class="p-button-secondary"></button>
+    </div>
+    
+      <div  style="text-align: center;margin-top: 8px;">
+        <button  (click)="Logout()" pButton pRipple type="button" style="width: 100%;height: 50px;" label="Logout"  class="p-button-raised"></button>
+      </div>
+      
+</p-dialog>
+
+
+ 
+<div class="p-grid" style="position: fixed;">
+  
+  <div class="p-col">
+      <div class="box">
+        
+    
+    
+      <div class="p-d-flex">
+        <div class="p-mr-2">
+          
+          
+          <div class="p-d-flex p-flex-column">
+            <br>
+            <div class="p-mb-2">
+              <button pButton pRipple type="button" id="addBox"  icon="pi pi-sort" class="p-button-raised p-button-text p-button-plain" (click)="TOOLS_MOVE()"></button>
+            </div>
+            <div class="p-mb-2">
+              <button pButton pRipple type="button" id="clean"   icon="pi pi-share-alt" class="p-button-raised p-button-text p-button-plain"  (click)="TOOLS_DRAW()"></button>
+            </div>
+            <div class="p-mb-2">
+              <button pButton pRipple type="button" id="delete"  icon="pi pi-trash" class="p-button-raised p-button-text p-button-plain" ></button>
+            </div>
+          </div>
+          
+        </div>
+        <div class="p-mr-2" >
+          
+       
+      
+          <div >
+            <agm-map  [ngStyle]="S_setHeighwindowsW()" [latitude]="13.67" [longitude]="100.46" (mapReady)="mapReadyHandler($event)"  (triggerResize)="true" [disableDoubleClickZoom]="true" >
+            
+              <ng-container  *ngFor="let Admin_User of _MARKER_ARRAY">
+                <ng-container     *ngFor="let alldata of Admin_User">
+                  <ng-container       *ngFor="let data of alldata">
+                        <agm-marker   [latitude]="data.lat" [longitude]="data.lng" [iconUrl]="data.url" (markerClick)="HTTP_SELETE_BY_ID(data.id,data.by,infowindow)">
+                        
+                            <agm-info-window  #infowindow [disableAutoPan]="true">
+
+                              <div  *ngFor="let item of _MARKER_DETEIL_BY_ID">
+
+                                <div class="fake-link" style="width: 300px;height: 300px;background-color: rgb(160, 160, 160);overflow: hidden;">
+                                  <img class="Y2VudGVy" src="http://20.198.233.53:1230/{{item.by}}{{item.user_id_fk}}/{{item.photo}}" alt="">
+                                </div>
+                                <div style="line-height: 5px;">
+                                  <h3>รายการโดย: {{item.username}}</h3>
+                                </div>
+                                <div style="line-height: 5px;">
+                                  <ng-container *ngIf="item.crack_type == 0"><h3>ชนิดถนน: หลุม</h3></ng-container>
+                                  <ng-container *ngIf="item.crack_type == 1"><h3>ชนิดถนน: แตกร้าว</h3></ng-container>
+                                  <ng-container *ngIf="item.crack_type == 2"><h3>ชนิดถนน: ซ่อมปะ</h3></ng-container>
+                                  <ng-container *ngIf="item.crack_type == 3"><h3>ชนิดถนน: N/A</h3></ng-container>
+                                  <h3>ID: {{item.road_id}}</h3>
+                                <h3>วันที่: {{item.date}}</h3>
+                                </div>
+                                <h3 *ngIf="data.by != 'ADMIN'" style="width: 300px;word-wrap: break-word;">รายละเอียด: {{item.detail}}</h3>
+
+
+                                  <button (click)="HTTP_SELETE_BY_ID(data.id,data.by,infowindow,true)" style="border: 0px;color: rgb(100, 100, 100);" pButton pRipple type="button" label="รายละเอียด" class="p-button-outlined" ></button>
+
+                              </div>
+                                
+                            
+                          </agm-info-window> 
+                      
+                        
+                        </agm-marker>
+                  </ng-container>
+                </ng-container>
+              </ng-container>
+        
+                
+            </agm-map>
+        </div>
+
+
+        </div>
+        <div class="p-mr-2 disable"  >
+          
+       
+          <div class="grid">
+              <div class="col-12" style="line-height: 0px;">
+                <h4>เลเยอร์</h4>
+              </div>
+              <hr>
+
+              <div class="col-12" >
+                <div class="box"  style="height: 200px;overflow: scroll;overflow-x: hidden;"> 
+                  <p-treeTable  id="frmHierachiManage"  [value]="_LAYER_ARRAY" [columns]="cols"  selectionMode="multiple" (onNodeSelect)="onNodeSelect()"  [(selection)]="_LAYER_SELETEION_ARRAY" dataKey="name" [metaKeySelection]="true" styleClass="p-treetable-sm"> 
+                    <ng-template pTemplate="body" let-rowNode let-rowData="rowData" let-columns="columns">
+                        <tr  [ttRow]="rowNode" [ttRow]="rowNode" [ttSelectableRow]="rowNode" style="font-size: 14px;font-weight: bold;" >
+                            <td  *ngFor="let col of columns; let i = index">
+                                <p-treeTableToggler class="pi pi-circle-on"  style="height: 0px" [rowNode]="rowNode" *ngIf="i == 0"></p-treeTableToggler>
+                                
+                                {{rowData[col.field]}}
+                                
+                            </td >
+                        </tr>
+                    </ng-template>
+                </p-treeTable> 
+                </div>
+              </div>
+              <hr>
+
+              <div class="col-12"  style="line-height: 0px;">
+                  <h4 >มาร์กเกอร์</h4>
+              </div>
+              <hr>
+
+              <div class="col-12" >
+                
+                <div *ngIf="_LAYER_SELETEION_ARRAY.length == 0" class="center" [ngStyle]="S_setHeighMarker()">
+                  <div class="col-12"> <i class="pi pi-file-o" style="font-size: 150px;color: rgba(0, 0, 0, 0.05);"></i></div>
+                </div>
+
+                <div *ngIf="_LAYER_SELETEION_ARRAY.length >= 1">
+
+                  <div class="grid">
+
+
+                    <div class="col-12"  style="margin-top: -5px;">
+
+                     
+                      <div class="p-d-flex line_Marker fake-link" style="height: 100px;"  *ngFor="let item of _MARKER_DETEIL" (click)="MARKER_BUTTON_DETEIL(item.mode)"> 
+
+                        <div class="p-mr-2 boxDiv">
+                          <i class="pi pi-circle-on " [ngStyle]="STYTE_MARKER(item.color)"></i>
+                        </div>
+
+                        <div class="p-mr-2 deteil_Marker">
+                          <h3>{{item.main}}</h3>
+                          <h5>{{item.value}} มาร์กเกอร์</h5>
+                          <div style="margin-top: -10px;">
+                            <p-progressBar [style]="{'height':'10px','width':'90%'}" [value]="item.value" [showValue]='false' ></p-progressBar>
+                          </div>
+                        </div>
+
+                        <div class="p-mr-2 boxDiv "  >
+                          
+                          <i class="pi pi-angle-right"    style="font-size: 20px;color: rgba(0, 0, 0, 0.25);"></i>
+                        </div>
+
+                      </div>
+
+
+                    </div>
+
+
+
+                   
+
+                  </div>
+
+                  <div></div>
+
+                </div>
+
+
+              </div>
+
+            </div>
+           
+        </div>
+      
+          
+
+
+
+    </div>
+
+      </div>
+
+
+   
+    
+
+
+
+  </div>
+
+
+
+
+
+
+
+
+
