@@ -1,9 +1,9 @@
 .popup {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translate(0, -50%);
-    transform: translate(-50%, -50%);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(0, -50%);
+  transform: translate(-50%, -50%);
 }
 
 html, body {margin: 0; height: 100%; overflow: hidden}
@@ -11,45 +11,42 @@ html, body {margin: 0; height: 100%; overflow: hidden}
 
 .disable {
 
-      -webkit-user-select: none; /* Safari */
-       -khtml-user-select: none; /* Konqueror HTML */
-         -moz-user-select: none; /* Firefox */
-          -ms-user-select: none; /* Internet Explorer/Edge */
-              user-select: none; /* Non-prefixed version, currently
-                                    supported by Chrome and Opera */
-  }
-  * {
-    font-family: 'Kanit', sans-serif;
-  
-  } 
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+* {
+  font-family: 'Kanit', sans-serif;
 
-  .content {
-    /* this is needed or the background will be offset by a few pixels at the top */
-    overflow: auto;
-    position: relative;
-  }
-  
-  .content::before {
-    content: "";
-    position: fixed;
-    left: -5;
-    right: -5;
-    z-index: -1;
-    margin-top: -20px;
-    margin-left: -20px;
-  
-    display: block;
-    background-image:  url(https://images.unsplash.com/photo-1542335834-96ffae4f762f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80);
-    background-size:cover;
-    width: 110%;
-    height: 110%;
-  
-    -webkit-filter: blur(10px);
-    -moz-filter: blur(10px);
-    -o-filter: blur(10px);
-    -ms-filter: blur(10px);
-    filter: blur(10px);
-  }
+} 
 
+.content {
+  /* this is needed or the background will be offset by a few pixels at the top */
+  overflow: auto;
+  position: relative;
+}
 
+.content::before {
+  content: "";
+  position: fixed;
+  left: -5;
+  right: -5;
+  z-index: -1;
+  margin-top: -20px;
+  margin-left: -20px;
 
+  display: block;
+  background-image:  url(https://images.unsplash.com/photo-1542335834-96ffae4f762f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80);
+  background-size:cover;
+  width: 110%;
+  height: 110%;
+
+  -webkit-filter: blur(10px);
+  -moz-filter: blur(10px);
+  -o-filter: blur(10px);
+  -ms-filter: blur(10px);
+  filter: blur(10px);
+}

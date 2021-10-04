@@ -1,0 +1,125 @@
+agm-map {
+    height: 300px;
+  }
+
+
+  .element {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+} 
+
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgb(216, 216, 216);
+  border-radius: 100px;
+}
+
+::-webkit-scrollbar-thumb {
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, .3);
+  border-radius: 100px;
+}
+
+hr{
+  border-top: 1px solid rgb(228, 228, 228);
+}
+
+.boxDiv {
+  display: flex;
+  flex-wrap: wrap; /* Optional. only if you want the items to wrap */
+  justify-content: center; /* For horizontal alignment */
+  align-items: center; /* For vertical alignment */
+}
+
+.deteil_Marker{
+  width: 100%;
+  line-height:0;
+  margin-top: 10px;
+}
+
+.line_Marker {
+  border-bottom-style: solid;
+  border-bottom-color: rgb(238, 238, 238);
+}
+
+
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: rgb(33, 150, 243);
+  color: white;
+}
+
+h5,h4{
+  font-weight: lighter;
+}
+.tab2 {
+  tab-size: 4;
+}
+* {
+  font-family: 'Kanit', sans-serif;
+
+} 
+
+.disable,* {
+  -webkit-touch-callout: none; /*iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+
+
+.fake-link {
+  text-decoration: unset;
+  cursor: pointer;
+}
+
+.Y2VudGVy {
+  position: relative;
+  left: 50%;
+  -webkit-transform: translate(-50%);
+  -ms-transform: translate(-50%);
+  transform: translate(-50%,0);
+  width: auto;
+  height: 100%;
+}
+
+
+.popup {
+  /* position: fixed; */
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(0, -50%);
+  transform: translate(-50%, -50%);
+}
