@@ -1,0 +1,75 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit&display=swap" rel="stylesheet">
+
+
+<html >
+  <body>
+    
+    
+        <div  class="p-grid content  " [ngStyle]="S_setHeighwindowsAuto()" >
+
+          <div  class="p-col" >
+
+                  <div  class="p-grid popup " style="align-self: center;">
+              
+                          <div class="p-col" >
+                  
+                                <p-card [style]="{width: '360px'}">
+                                  <div style="line-height: 10px;">
+                                    <h1>Login</h1>
+                                    <h4 style="color: rgb(139, 139, 139);">Road Management System</h4>
+                                  </div>
+
+                                      <div class="p-grid">
+
+                                        <div class="p-col-4" style="background-color: rgb(11, 202, 202);">
+                                          
+                                        </div>
+                                        <div class="p-col-4" style="background-color: rgb(216, 205, 50);">
+
+                                        </div>
+                                        <div class="p-col-4" style="background-color: rgb(114, 101, 197);">
+
+                                        </div>
+
+                                      </div>
+
+                                      <br>
+
+                                  <h4 *ngIf="statr == false" [@enterTrigger]="'fadeIn'" style="color: crimson;margin-top: -10px;margin-bottom: -0px;text-align: center;">Username หรือ Password ไม่ถูกต้อง</h4>
+
+                                  <div >
+                                        <label for="username1">Username</label>
+                                        <div class="p-field">
+                                          <input type="text" pInputText  style="width: 100%;" [(ngModel)]="Username"/>
+                                        </div>
+                                        
+                                        <label for="username1">Password</label>
+                                        <div class="p-field">
+                                          <input  (keyup.enter)="HTTP_ADMIN_LOGIN()" type="password" pPassword style="width: 100%;" [(ngModel)]="Password" [feedback]="false"/>
+                                        </div>
+                                  </div>
+                                  
+                                  
+
+                                  <ng-template pTemplate="footer">
+                                    <button (click)="HTTP_ADMIN_LOGIN()" pButton pRipple type="button" style="width: 100%;" label="Login"></button>                           
+                                  </ng-template>
+                                  
+                                </p-card>
+                          
+                          </div>
+                  </div>
+
+          </div>
+
+      </div>
+
+
+  </body>
+</html>
+
+  
+
+
