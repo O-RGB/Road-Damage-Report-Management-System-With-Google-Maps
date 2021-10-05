@@ -4,6 +4,7 @@ import { Marker } from './INTERFACES/MARKER_ARRAY';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { Title } from '@angular/platform-browser';
+import {MenuItem, PrimeIcons} from 'primeng/api';
 
 @Component({
   selector: 'app-googlemaphome',

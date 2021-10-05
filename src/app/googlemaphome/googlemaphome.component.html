@@ -2,6 +2,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Kanit&display=swap" rel="stylesheet">
 
+
 <p-menubar [model]="items"   [style]="{'height':'50px'}">
 
   <button pButton pRipple type="button" (click)="DISPLAY_ACCOUNT()" style="border: 0px;color: rgb(100, 100, 100);" icon="pi pi-user" label="{{this.username}}" class="p-button-outlined p-button-secondary"></button>
@@ -419,6 +420,7 @@
 
               <div class="col-12"  style="line-height: 0px;">
                   <h4 >มาร์กเกอร์</h4>
+                  
               </div>
               <hr>
 
@@ -439,7 +441,7 @@
                       <div class="p-d-flex line_Marker fake-link" style="height: 100px;"  *ngFor="let item of _MARKER_DETEIL" (click)="MARKER_BUTTON_DETEIL(item.mode)"> 
 
                         <div class="p-mr-2 boxDiv">
-                          <i class="pi pi-circle-on " [ngStyle]="STYTE_MARKER(item.color)"></i>
+                          <i class="pi pi-circle-on" [ngStyle]="STYTE_MARKER(item.color)"></i>
                         </div>
 
                         <div class="p-mr-2 deteil_Marker">
