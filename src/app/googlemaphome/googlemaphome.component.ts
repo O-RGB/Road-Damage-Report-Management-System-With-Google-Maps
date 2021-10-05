@@ -372,11 +372,17 @@ export class GooglemaphomeComponent implements OnInit {
     else if(this._MARKER_DETEIL_TYPE_CHENGE.name == 'ถนนซ่อมปะ') index = 2
     else if(this._MARKER_DETEIL_TYPE_CHENGE.name == 'N/A') index = 3
 
+    let repair : any
+    if(this._selectedREPAIR.name == "ซ่อมแล้ว") repair = 1
+    else if(this._selectedREPAIR.name == "ไม่") repair = 0
+
     let str: any
     if(mode == "photo/") str = "USER"
     else if(mode == "photo/admin/") str = "ADMIN"
 
-    let json = { predict: 1, state: 1, road_id: road_id, crack_type: index, mode: str };
+    let json = { predict: 1, state: 1,repaired: repair, road_id: road_id, crack_type: index, mode: str };
+    console.log("in method MARKER_DETEIL_TYPE_SAVE")
+    console.log(json)
     this.http.post("http://20.198.233.53:1230/marker/add", JSON.stringify(json)).subscribe(response => {
       console.log(json)
       console.log(response)
@@ -385,6 +391,21 @@ export class GooglemaphomeComponent implements OnInit {
     }, error => {
       console.log("fail");
     });
+  }
+
+  _REPAIR = [
+    {name: 'ซ่อมแล้ว', code: 'RP'},
+    {name: 'ไม่', code: 'NO'},
+  ];
+  _selectedREPAIR :any ;
+  MARKER_REPAIR_TYPE_CHENGE(chenge: any){
+    console.log(chenge)
+    if(chenge == 0){
+      this._selectedREPAIR = {name: 'ไม่', code: 'NO'}
+      console.log(this._selectedREPAIR)
+    }else{
+      this._selectedREPAIR = {name: 'ซ่อมแล้ว', code: 'RP'}
+    }
   }
 
   MARKER_CONVERT(mode: any,str:any){
@@ -583,6 +604,7 @@ export class GooglemaphomeComponent implements OnInit {
         MARKER[0].by = "photo/"
         this._MARKER_DETEIL_BY_ID = MARKER
         this._MARKER_DETEIL_TYPE_CHENGE = {name: this.MARKER_CONVERT("reverse",MARKER[0].crack_type)}
+        this.MARKER_REPAIR_TYPE_CHENGE(MARKER[0].repaired)
 
       }, err => {
         console.log("re" + JSON.stringify(err));
@@ -596,6 +618,7 @@ export class GooglemaphomeComponent implements OnInit {
         MARKER[0].by ="photo/admin/"
         this._MARKER_DETEIL_BY_ID = MARKER
         this._MARKER_DETEIL_TYPE_CHENGE = {name: this.MARKER_CONVERT("reverse",MARKER[0].crack_type)}
+        this.MARKER_REPAIR_TYPE_CHENGE(MARKER[0].repaired)
       }, err => {
         console.log("re" + JSON.stringify(err));
       });

@@ -248,8 +248,7 @@
             <hr>
 
             <div style="line-height: 0px;"><h5>สภานะการซ่อม: </h5></div>
-            <ng-container *ngIf="item.repaired == 0"> <h4>ไม่</h4> </ng-container>
-            <ng-container *ngIf="item.repaired == 1"> <h4>ซ่อมแล้ว</h4> </ng-container>
+            <p-dropdown [options]="_REPAIR" [(ngModel)]="_selectedREPAIR"  optionLabel="name"></p-dropdown>
 
             <hr>
 
