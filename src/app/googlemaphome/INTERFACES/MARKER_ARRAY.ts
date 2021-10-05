@@ -9,6 +9,7 @@ export interface Marker {
     by: string
     imgPath: string
     predict: number
+    repaired: string
     user_id: string
     state: string
     

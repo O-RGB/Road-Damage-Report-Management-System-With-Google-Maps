@@ -108,6 +108,7 @@ export class GooglemaphomeComponent implements OnInit {
         maskerColoer = "blackMarker";
       }
 
+
       let photoPath  = ""
       let user_id = ''
       if(Mode == "USER"){
@@ -130,6 +131,7 @@ export class GooglemaphomeComponent implements OnInit {
         by: Mode,
         imgPath: photoPath,
         predict: element.predict,
+        repaired: element.repaired,
         user_id: user_id,
         state: element.state
       })
@@ -152,6 +154,7 @@ export class GooglemaphomeComponent implements OnInit {
           _MARKER_ARRAY = this.MARKER_CHECK_ME(_MARKER_ARRAY)
           _MARKER_ARRAY = this.MARKER_CHECK_PREDICT(_MARKER_ARRAY)
           _MARKER_ARRAY = this.MARKER_CHECK_MANAGER(_MARKER_ARRAY)
+          _MARKER_ARRAY = this.MARKER_CHECK_REPAIRED(_MARKER_ARRAY)
           this._MARKER_ARRAY[0][0] = _MARKER_ARRAY
       }
       else this._MARKER_ARRAY[0][0] = []
@@ -161,6 +164,7 @@ export class GooglemaphomeComponent implements OnInit {
           _MARKER_ARRAY = this.MARKER_CHECK_ME(_MARKER_ARRAY)
           _MARKER_ARRAY = this.MARKER_CHECK_PREDICT(_MARKER_ARRAY)
           _MARKER_ARRAY = this.MARKER_CHECK_MANAGER(_MARKER_ARRAY)
+          _MARKER_ARRAY = this.MARKER_CHECK_REPAIRED(_MARKER_ARRAY)
           this._MARKER_ARRAY[0][1] = _MARKER_ARRAY
       }
       else this._MARKER_ARRAY[0][1] = []
@@ -170,6 +174,7 @@ export class GooglemaphomeComponent implements OnInit {
           _MARKER_ARRAY = this.MARKER_CHECK_ME(_MARKER_ARRAY)
           _MARKER_ARRAY = this.MARKER_CHECK_PREDICT(_MARKER_ARRAY)
           _MARKER_ARRAY = this.MARKER_CHECK_MANAGER(_MARKER_ARRAY)
+          _MARKER_ARRAY = this.MARKER_CHECK_REPAIRED(_MARKER_ARRAY)
           this._MARKER_ARRAY[0][2] = _MARKER_ARRAY
       }
       else this._MARKER_ARRAY[0][2] = []
@@ -179,6 +184,7 @@ export class GooglemaphomeComponent implements OnInit {
           _MARKER_ARRAY = this.MARKER_CHECK_ME(_MARKER_ARRAY)
           _MARKER_ARRAY = this.MARKER_CHECK_PREDICT(_MARKER_ARRAY)
           _MARKER_ARRAY = this.MARKER_CHECK_MANAGER(_MARKER_ARRAY)
+          _MARKER_ARRAY = this.MARKER_CHECK_REPAIRED(_MARKER_ARRAY)
           this._MARKER_ARRAY[0][3] = _MARKER_ARRAY
       }
       else this._MARKER_ARRAY[0][3] = []
@@ -193,6 +199,7 @@ export class GooglemaphomeComponent implements OnInit {
           _MARKER_ARRAY = this.MARKER_CHECK_ME(_MARKER_ARRAY)
           _MARKER_ARRAY = this.MARKER_CHECK_PREDICT(_MARKER_ARRAY)
           _MARKER_ARRAY = this.MARKER_CHECK_MANAGER(_MARKER_ARRAY)
+          _MARKER_ARRAY = this.MARKER_CHECK_REPAIRED(_MARKER_ARRAY)
           this._MARKER_ARRAY[1][0] = _MARKER_ARRAY
       }
       else this._MARKER_ARRAY[1][0] = []
@@ -202,6 +209,7 @@ export class GooglemaphomeComponent implements OnInit {
           _MARKER_ARRAY = this.MARKER_CHECK_ME(_MARKER_ARRAY)
           _MARKER_ARRAY = this.MARKER_CHECK_PREDICT(_MARKER_ARRAY)
           _MARKER_ARRAY = this.MARKER_CHECK_MANAGER(_MARKER_ARRAY)
+          _MARKER_ARRAY = this.MARKER_CHECK_REPAIRED(_MARKER_ARRAY)
           this._MARKER_ARRAY[1][1] = _MARKER_ARRAY
       }
       else this._MARKER_ARRAY[1][1] = []
@@ -211,6 +219,7 @@ export class GooglemaphomeComponent implements OnInit {
           _MARKER_ARRAY = this.MARKER_CHECK_ME(_MARKER_ARRAY)
           _MARKER_ARRAY = this.MARKER_CHECK_PREDICT(_MARKER_ARRAY)
           _MARKER_ARRAY = this.MARKER_CHECK_MANAGER(_MARKER_ARRAY)
+          _MARKER_ARRAY = this.MARKER_CHECK_REPAIRED(_MARKER_ARRAY)
           this._MARKER_ARRAY[1][2] = _MARKER_ARRAY
       }
       else this._MARKER_ARRAY[1][2] = []
@@ -220,6 +229,7 @@ export class GooglemaphomeComponent implements OnInit {
         _MARKER_ARRAY = this.MARKER_CHECK_ME(_MARKER_ARRAY)
         _MARKER_ARRAY = this.MARKER_CHECK_PREDICT(_MARKER_ARRAY)
         _MARKER_ARRAY = this.MARKER_CHECK_MANAGER(_MARKER_ARRAY)
+        _MARKER_ARRAY = this.MARKER_CHECK_REPAIRED(_MARKER_ARRAY)
         this._MARKER_ARRAY[1][3] = _MARKER_ARRAY
       }
       else this._MARKER_ARRAY[1][3] = []
@@ -293,6 +303,24 @@ export class GooglemaphomeComponent implements OnInit {
         element.forEach((data: any) => {
 
           if(data.state == 1){
+            _MARKER_ARRAY.push(data)
+          }
+        });
+
+        return _MARKER_ARRAY
+    }
+
+    return element
+  }
+
+  //กรองมาร์เกอร์ที่เจ้าหน้าได้ซ่อมถนนจริง ๆ แล้ว
+  _MARKER_REPAIRED = false
+  MARKER_CHECK_REPAIRED(element: any){
+    if(this._MARKER_REPAIRED==true){
+      const _MARKER_ARRAY: any[] = []
+        element.forEach((data: any) => {
+
+          if(data.repaired == 1){
             _MARKER_ARRAY.push(data)
           }
         });

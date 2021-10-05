@@ -182,6 +182,11 @@
                 <p-checkbox [binary]="true"  [(ngModel)]="_MARKER_MANAGER"></p-checkbox>
                 <label for="ny">เจ้าหน้าที่ตรวจสอบแล้ว</label>
               </div>
+
+              <div class="p-field-checkbox">
+                <p-checkbox [binary]="true"  [(ngModel)]="_MARKER_REPAIRED"></p-checkbox>
+                <label for="ny">เจ้าหน้าที่ได้ซ่อมแล้ว</label>
+              </div>
         
 
         </div>
@@ -239,6 +244,12 @@
             <div style="line-height: 0px;"><h5>ตรวจสอบโดยเจ้าหน้าที่: </h5></div>
             <ng-container *ngIf="item.state == 0"> <h4>ไม่</h4> </ng-container>
             <ng-container *ngIf="item.state == 1"> <h4>ตรวจสอบแล้ว</h4> </ng-container>
+
+            <hr>
+
+            <div style="line-height: 0px;"><h5>สภานะการซ่อม: </h5></div>
+            <ng-container *ngIf="item.repaired == 0"> <h4>ไม่</h4> </ng-container>
+            <ng-container *ngIf="item.repaired == 1"> <h4>ซ่อมแล้ว</h4> </ng-container>
 
             <hr>
 
