@@ -1,27 +1,38 @@
-# WebGoogleManager
+# Road-Damage-Report-Management-System-With-Google-Maps
+## ระบบจัดการการรายงานถนนเสียกาย
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.8.
+## ใช้ Flask web server
+## ระบบจัดการการรายงานถนนเสียหาย
+- Angular
+- Flask web server
+- PrimgNG
+- AGM-GMAP
 
-## Development server
+# ver 1.0
+![img](https://i.imgur.com/BxYtLtn.png)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+# ver 1.2
+![img](https://i.imgur.com/MxT4h1p.png)
 
-## Code scaffolding
+- ระบบตั้งค่ากรอง Merker ที่ต้องการ
+![img](https://i.imgur.com/8694fvU.png)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- ระบบอ่านไฟล์จากโปรแกรม Road Detactor
+![img](https://i.imgur.com/jxjtI3K.png)
 
-## Build
+- ระบบเลเยอร์มากกว่า 1
+- ระบบนับ Marker ที่อยู่ใน เลเยอร์
+- ระบบแสดงรายชื่อ Merker ที่อยู่ในเลเยอร์
+![img](https://i.imgur.com/yQSgEoQ.png)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- ระบบเปลี่ยนโหมด Merker 
+![img](https://i.imgur.com/H4kaFfj.png)
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+# ฟังก์ชัน
+## สร้าง Polygon เพื่อหาจุด Merker ทั้งหมด
+## คำนวณหาจำนวน Merker และแสดง % ความเสียหาย
+## ระบบแยก Layer
+- สร้าง Polygon เพื่อหาจุด Merker ทั้งหมด
+- คำนวณหาจำนวน Merker และแสดง % ความเสียหาย
+- ระบบแยก Layer
